@@ -7,7 +7,7 @@ Author: Shinji Iida
 3. 03_mw_metad.sh 
 4. 04_rest_mw_metad.sh
 
-[!NOTE]
+> [!NOTE]
 > `template_metad.sh` and `template_rst_metad.sh` are used to create a job script for each walker.
 > In `03_mw_metad.sh` or `04_rest_mw_metad.sh`, the template is modified for each walker.
 
