@@ -25,3 +25,7 @@ Execute the following commands consecutively:
 - `clean.sh`: clean metadynamics outputs.
 - `keepfiles.sh`: Creating a directory, the current metadynamics outputs are saved in it.
 - `revertfiles.sh`: From the keepfile directory, the metadynamics outputs are reverted.
+- `cat_hills.sh`: All HILL files are concatinated, the concat file can be used to draw FES for multiple walkers.
+
+
+## TODO: Unbiased Conformational Ensemlbe Creation
