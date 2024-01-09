@@ -1,5 +1,6 @@
 !inputs/
 !unbiased_ensemble/inputs/
+!test/
 metad*
 *.xtc
 *.cpt
