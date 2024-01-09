@@ -1,11 +1,11 @@
 #!/bin/bash 
 #$ -S /bin/bash
 #$ -cwd
-#$ -l h_rt=@walltime
+#$ -l h_rt=@WALLTIME
 #$ -l q_node=1
 ##$ -g hp230064
-#$ -N metad_@walker_id
-#$ -o metad_out_@walker_id
+#$ -N metad_@WALKER_ID
+#$ -o metad_out_@WALKER_ID
 set -eu 
 . /etc/profile.d/modules.sh
 module load cuda/11.2.146
@@ -21,13 +21,13 @@ export PATH=/gs/hs1/hp230064/siida/software/gromacs-2022.5-plumed-2.8.3/build/bi
 export LD_LIBRARY_PATH=/gs/hs1/hp230064/siida/software/gromacs-2022.5-plumed-2.8.3/build/lib:$LD_LIBRARY_PATH
 
 GMX=gmx_mpi 
-sed "s/@seed/$RANDOM/g" inputs/nvt.mdp > nvt_@walker_id.mdp
-${GMX} grompp -f nvt_@walker_id.mdp \
+sed "s/@seed/$RANDOM/g" inputs/nvt.mdp > nvt_@WALKER_ID.mdp
+${GMX} grompp -f nvt_@WALKER_ID.mdp \
   	      -c em2.gro \
  	      -r em2.gro \
  	      -p topol.top \
- 	      -po mdout_meatd_@walker_id.mdp \
- 	      -o metad_@walker_id.tpr
+ 	      -po mdout_meatd_@WALKER_ID.mdp \
+ 	      -o metad_@WALKER_ID.tpr
 
-sed -e "s/@id/@walker_id/g" inputs/plumed.dat > plumed_@walker_id.dat
-${GMX} mdrun -deffnm metad_@walker_id -s metad_@walker_id.tpr -plumed plumed_@walker_id.dat 
+#sed -e "s/@id/@WALKER_ID/g" @PLUMED_IN > plumed_@WALKER_ID.dat
+${GMX} mdrun -deffnm metad_@WALKER_ID -s metad_@WALKER_ID.tpr -plumed plumed_@WALKER_ID.dat 

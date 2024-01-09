@@ -23,7 +23,7 @@ export LD_LIBRARY_PATH=/gs/hs1/hp230064/siida/software/gromacs-2022.5-plumed-2.8
 
 GMX=gmx_mpi 
 
-fin=inputs/decaAla.pdb
+fin=$1 #inputs/decaAla.pdb
 ${GMX} pdb2gmx -f $fin -o processed.gro -water tip3p
 
 echo Protein | ${GMX} editconf -f processed.gro \
