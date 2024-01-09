@@ -24,7 +24,13 @@ metad: METAD ...
 
    # Gaussians will be written to file and also stored on grid
    FILE=HILLS GRID_MIN=-pi,-pi GRID_MAX=pi,pi
+
+   WALKERS_N=@NWAKERS
+   WALKERS_ID=@WALKER_ID
+   WALKERS_DIR=./
+   WALKERS_RSTRIDE=100
+   
 ...
 
 # Print both collective variables on COLVAR file every 10 steps
-PRINT ARG=phi,psi FILE=COLVAR STRIDE=10
+PRINT ARG=phi,psi FILE=COLVAR_@WALKER_ID STRIDE=10
