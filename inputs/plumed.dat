@@ -44,7 +44,7 @@ metad: METAD ...
    SIGMA=0.25,0.25
 
    WALKERS_N=5
-   WALKERS_ID=@id
+   WALKERS_ID=@WALKER_ID
    WALKERS_DIR=./
    WALKERS_RSTRIDE=100 
 
@@ -53,4 +53,4 @@ metad: METAD ...
 ...
 
 # Print both collective variables on COLVAR file every 10 steps
-PRINT ARG=alphaphi,alphapsi,metad.bias FILE=COLVAR_@id STRIDE=10
+PRINT ARG=alphaphi,alphapsi,metad.bias FILE=COLVAR_@WALKER_ID STRIDE=10
