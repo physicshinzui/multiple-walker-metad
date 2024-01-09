@@ -1,6 +1,11 @@
 # Multiple Walker Well-Tempered Metadynamics
 Author: Shinji Iida
 
+## Test environment 
+- TSUBAME 3.0
+- Gromacs 2022.5
+- PLUMED 2.8.3
+
 ## How to use 
 Execute the following commands consecutively:
 1. `01_em.sh`
