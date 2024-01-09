@@ -1,7 +1,13 @@
 import numpy as np 
+import argparse 
 
-cv1_range = [8.5, 9.0]
-cv2_range = [8.5, 9.0]
+p = argparse.Argumentparser()
+p.add_argument('--xrange', '-xr', required=True)
+p.add_argument('--yrange', '-yr', required=True)
+args = p.parse_args()
+
+cv1_range = args.xr #[8.5, 9.0]
+cv2_range = args.yr #[8.5, 9.0]
 with open('colvar.out', 'r') as fin:
     for line in fin:
        if line.startswith('#'): continue 

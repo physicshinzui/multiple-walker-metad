@@ -2,7 +2,7 @@ import numpy as np
 
 kt = 2.494339 #kj/mol at 300K
 times, weights = [], []
-with open('../COLVAR_REWEIGHT', 'r') as fin:
+with open('COLVAR_REWEIGHT', 'r') as fin:
     for line in fin:
         if line.startswith('#'): continue 
 
