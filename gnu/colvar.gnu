@@ -1,2 +1,7 @@
-# time/ns, phi/rad
-p [0:2][-3.5:3.5] 'COLVAR' u ($1/1000):2 every 10 pt 7 title 'phi'
+
+set multiplot layout 2,1
+set title 'CV1'
+plot for [i=1:5] sprintf("COLVAR_%d", i) using 1:2 every 10 w l notitle 
+set title 'CV2'
+plot for [i=1:5] sprintf("COLVAR_%d", i) using 1:3 every 10 w l notitle 
+unset multiplot
