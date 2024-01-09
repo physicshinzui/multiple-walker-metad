@@ -1,0 +1,60 @@
+# Activate MOLINFO functionalities
+MOLINFO STRUCTURE=ref.pdb
+#WHOLEMOLECULES ENTITY0=1-109
+
+# -0.994838 = -57.0 deg (phi)
+ALPHABETA ...
+ATOMS1=@phi-2 REFERENCE=-0.994838
+ATOMS2=@phi-3    
+ATOMS3=@phi-4    
+ATOMS4=@phi-5    
+ATOMS5=@phi-6    
+ATOMS6=@phi-7    
+ATOMS7=@phi-8    
+ATOMS8=@phi-9    
+ATOMS9=@phi-10   
+label=alphaphi
+...
+
+# -0.820305 = -47.0 deg (psi)
+ALPHABETA ...
+ATOMS1=@psi-2 REFERENCE=-0.820305
+ATOMS2=@psi-3    
+ATOMS3=@psi-4    
+ATOMS4=@psi-5    
+ATOMS5=@psi-6    
+ATOMS6=@psi-7    
+ATOMS7=@psi-8    
+ATOMS8=@psi-9    
+ATOMS9=@psi-10   
+label=alphapsi
+...
+
+# from CH3 to N in amide; no pbc correction in calculating distance.
+#ete: DISTANCE ATOMS=9,99 NOPBC 
+
+# 3.26 is the initial distance between A1 Ca - A10 CA
+#UPPER_WALLS ARG=ete AT=3.26 KAPPA=1000.0 LABEL=uwall
+#LOWER_WALLS ARG=xx AT=0.8 KAPPA=1000.0 LABEL=lwall
+
+# Activate well-tempered metadynamics 
+metad: METAD ...
+   ARG=alphaphi,alphapsi
+
+   # Deposit a Gaussian every 500 time steps, with initial height equal to 1.2 kJ/mol
+   PACE=500 HEIGHT=1.2
+
+   # The bias factor should be wisely chosen
+   BIASFACTOR=5
+
+   # Gaussian width (sigma) should be chosen based on CV fluctuation in unbiased run
+   SIGMA=0.25,0.25
+
+   # Gaussians will be written to file and also stored on grid
+   FILE=HILLS 
+   RESTART=YES
+   # GRID_MIN=0, GRID_MAX=pi
+...
+
+# Print both collective variables on COLVAR file every 10 steps
+PRINT ARG=alphaphi,alphapsi FILE=COLVAR STRIDE=10
