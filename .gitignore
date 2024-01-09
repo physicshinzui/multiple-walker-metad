@@ -19,3 +19,5 @@ rst_metad*
 restart_metad_*
 *.npz
 *.lock
+bck*
+*.out
