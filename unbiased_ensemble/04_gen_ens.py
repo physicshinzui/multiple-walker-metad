@@ -2,15 +2,19 @@ import MDAnalysis as mda
 from MDAnalysis.coordinates.XTC import XTCWriter
 import numpy as np 
 from tqdm import tqdm 
+import sys
 
+ref = sys.argv[1]
+traj = sys.argv[2]
 # Load the universe
-u = mda.Universe('../em2.tpr', '../metad.xtc')
+u = mda.Universe(ref, traj)
+# e.g., ref: em.tpr, traj: metad.xtc
 
 # Time points to extract (in picoseconds)
 times_to_extract = np.loadtxt('times.out')  # Adjust these values as needed
 size = len(times_to_extract)
 # Create a writer for the output file
-with XTCWriter('extracted_frames.xtc', n_atoms=u.atoms.n_atoms) as W:
+with XTCWriter('unbiased_ensemble.xtc', n_atoms=u.atoms.n_atoms) as W:
     counter = 0
     for ts in tqdm(u.trajectory):
         if ts.time in times_to_extract:

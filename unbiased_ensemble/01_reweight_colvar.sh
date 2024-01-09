@@ -1,2 +1,5 @@
 #!/bin/bash
-plumed driver --mf_xtc $1 --plumed inputs/reweight.dat --kt 2.494339
+set -eu 
+xtc_traj=$1
+plumed_in=$2
+plumed driver --mf_xtc $xtc_traj --plumed $plumed_in --kt 2.494339
