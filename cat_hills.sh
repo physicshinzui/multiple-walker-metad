@@ -1,3 +1,10 @@
 #!/bin/bash 
+set -eu
+n=`ls HILLS.* | wc -l`
+echo "Concatinated files:"
+ls HILLS.*
 
-cat HILLS.{0..3} > HILLS.all
+echo "No. of HILLS files = $n" 
+for i in `seq 0 $((n-1))`; do
+    cat HILLS.$i >> HILLS_all
+done
