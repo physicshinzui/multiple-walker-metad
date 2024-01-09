@@ -1,0 +1,24 @@
+# Activate MOLINFO functionalities
+MOLINFO STRUCTURE=../ref.pdb
+
+# Compute the backbone dihedral angle phi, defined by atoms C-N-CA-C
+# you might want to use MOLINFO shortcuts
+phi: TORSION ATOMS=@phi-2
+
+# Compute the backbone dihedral angle psi, defined by atoms N-CA-C-N
+# here also you might want to use MOLINFO shortcuts
+psi: TORSION ATOMS=@psi-2
+
+# Print both collective variables on COLVAR file every 1 steps
+PRINT ARG=phi,psi FILE=colvar.out STRIDE=1
+
+hphi: HISTOGRAM ARG=phi STRIDE=1 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=50 BANDWIDTH=0.25 
+hpsi: HISTOGRAM ARG=psi STRIDE=1 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=50 BANDWIDTH=0.25 
+
+# Convert histograms h(s) to free energies F(s) = -kBT * log(h(s))
+ffphi: CONVERT_TO_FES GRID=hphi
+ffpsi: CONVERT_TO_FES GRID=hpsi
+
+# Print out the free energies F(s) to file once the entire trajectory is processed
+DUMPGRID GRID=ffphi FILE=fes_phi.dat
+DUMPGRID GRID=ffpsi FILE=fes_psi.dat
