@@ -6,19 +6,20 @@ import sys
 
 ref = sys.argv[1]
 traj = sys.argv[2]
+
 # Load the universe
 u = mda.Universe(ref, traj)
 # e.g., ref: em.tpr, traj: metad.xtc
 
 # Time points to extract (in picoseconds)
-times_to_extract = np.loadtxt('times.out')  # Adjust these values as needed
-size = len(times_to_extract)
+frame_ids = np.loadtxt('reweighted_frame_ids.out')  # Adjust these values as needed
+size = len(frame_ids)
 # Create a writer for the output file
 with XTCWriter('unbiased_ensemble.xtc', n_atoms=u.atoms.n_atoms) as W:
     counter = 0
-    for ts in tqdm(u.trajectory):
-        if ts.time in times_to_extract:
-            #print(f"Extraction at {ts.time}")
+    for i, ts in tqdm(enumerate(u.trajectory)):
+        if i in frame_ids:
+            print(f"Extraction at {ts.time}")
             W.write(u)
             counter += 1
 
