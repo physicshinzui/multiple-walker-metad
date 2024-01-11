@@ -24,8 +24,9 @@ with XTCWriter('unbiased_ensemble.xtc', n_atoms=u.atoms.n_atoms) as W:
 
 if  counter != size:
     print("ERROR:")
-    print(f"No. of extracted frames {counter} are not the same as the size {size}")
-    print("You may not set correctly the COLVAR SLIDE value to the value of snapshot writing inverval. This must be the same.")
-    print("You should read an input file probably named `plumed_driver.dat`")
+    print(f"    No. of extracted frames {counter} are not the same as the size {size}")
+    print("    You may not set correctly the COLVAR SLIDE value to the value of snapshot writing inverval. This must be the same.")
+    print("    You should check the given input file, probably named `reweight.dat`")
+    sys.exit()
 
 print("Extraction complete.")
