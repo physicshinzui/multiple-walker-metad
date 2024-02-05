@@ -32,7 +32,7 @@ label=alphapsi
 
 # Activate well-tempered metadynamics 
 metad: METAD ...
-   ARG=alphaphi,alphapsi
+   ARG=alphapsi
 
    # Deposit a Gaussian every 500 time steps, with initial height equal to 1.2 kJ/mol
    PACE=500 HEIGHT=1.2
@@ -41,7 +41,7 @@ metad: METAD ...
    BIASFACTOR=5
 
    # Gaussian width (sigma) should be chosen based on CV fluctuation in unbiased run
-   SIGMA=0.25,0.25
+   SIGMA=0.25
 
    WALKERS_N=5
    WALKERS_ID=@WALKER_ID
